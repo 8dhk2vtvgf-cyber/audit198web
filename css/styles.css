@@ -159,14 +159,18 @@ html[lang="en"] .lang-only-en {
 
 .nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1.25rem;
+  justify-content: flex-end;
+  gap: 0.65rem 1rem;
 }
 
 .nav-links {
-  display: none;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1.25rem;
+  justify-content: flex-end;
+  gap: 0.55rem 0.9rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -655,11 +659,22 @@ html[lang="en"] .lang-only-en {
 }
 
 /* Breakpoints */
-@media (min-width: 720px) {
-  .nav-links {
-    display: flex;
+@media (max-width: 719px) {
+  .header-inner {
+    align-items: flex-start;
+    padding-block: 0.75rem;
   }
 
+  .nav-links a {
+    font-size: 0.82rem;
+  }
+
+  .brand img {
+    width: 2.35rem;
+  }
+}
+
+@media (min-width: 720px) {
   .experience-grid {
     grid-template-columns: 1fr 1fr;
     gap: 1.75rem 2.5rem;
