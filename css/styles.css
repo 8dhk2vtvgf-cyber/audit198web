@@ -242,6 +242,7 @@ html[lang="en"] .lang-only-en {
   min-height: min(94vh, 820px);
   display: grid;
   align-items: center;
+  justify-items: center;
   color: var(--white);
   overflow: hidden;
   background: var(--ink);
@@ -252,8 +253,8 @@ html[lang="en"] .lang-only-en {
   inset: 0;
   z-index: -2;
   background:
-    radial-gradient(ellipse 75% 55% at 78% 18%, rgba(247, 151, 32, 0.28), transparent 58%),
-    radial-gradient(ellipse 45% 40% at 12% 85%, rgba(247, 151, 32, 0.12), transparent 50%),
+    radial-gradient(ellipse 75% 55% at 50% 20%, rgba(247, 151, 32, 0.26), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 20% 85%, rgba(247, 151, 32, 0.12), transparent 50%),
     linear-gradient(155deg, #2b2940 0%, #35324d 42%, #45415f 100%);
 }
 
@@ -276,17 +277,25 @@ html[lang="en"] .lang-only-en {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(105deg, rgba(43, 41, 64, 0.72) 8%, rgba(43, 41, 64, 0.28) 55%, rgba(43, 41, 64, 0.12) 100%),
+    linear-gradient(105deg, rgba(43, 41, 64, 0.55) 8%, rgba(43, 41, 64, 0.28) 55%, rgba(43, 41, 64, 0.4) 100%),
     linear-gradient(180deg, rgba(43, 41, 64, 0.15) 0%, rgba(43, 41, 64, 0.55) 100%);
 }
 
+.hero-stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  padding-block: 3.25rem;
+  width: min(100% - 2.5rem, var(--max));
+}
+
 .hero-ornament {
-  position: absolute;
-  right: max(1rem, 4vw);
-  top: 50%;
-  transform: translateY(-52%);
-  width: min(46vw, 480px);
-  z-index: 0;
+  position: relative;
+  width: min(100%, 480px);
+  justify-self: end;
   pointer-events: none;
   opacity: 0.92;
 }
@@ -302,8 +311,8 @@ html[lang="en"] .lang-only-en {
 .hero-inner {
   position: relative;
   z-index: 1;
-  padding: 3.25rem 0 3.5rem;
-  max-width: min(42rem, 52%);
+  max-width: 36rem;
+  justify-self: start;
 }
 
 .hero h1 {
@@ -648,6 +657,8 @@ html[lang="en"] .lang-only-en {
   overflow: hidden;
   /* Tall enough that #contact can scroll flush under the sticky header at page end */
   min-height: calc(100vh - var(--header-h));
+  display: grid;
+  align-items: center;
   background:
     radial-gradient(700px 400px at 90% 10%, rgba(247, 151, 32, 0.18), transparent 55%),
     linear-gradient(160deg, var(--ink) 0%, var(--ink-elevated) 55%, #171433 100%);
@@ -657,13 +668,22 @@ html[lang="en"] .lang-only-en {
 .contact::before {
   content: "";
   position: absolute;
-  left: -10%;
-  bottom: -30%;
-  width: min(55vw, 480px);
-  aspect-ratio: 1;
-  opacity: 0.07;
-  background: url("../assets/brand/logo-light.svg") center / contain no-repeat;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: min(52vw, 380px);
+  aspect-ratio: 200 / 160;
+  opacity: 0.08;
+  background: url("../assets/brand/logo-mark-light.svg") center / contain no-repeat;
   pointer-events: none;
+}
+
+.contact > .wrap {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.5rem, var(--max));
+  margin-inline: auto;
+  padding-block: 3rem;
 }
 
 .contact .section-head {
@@ -818,17 +838,36 @@ html[lang="en"] .lang-only-en {
     height: 2.15rem;
   }
 
-  .hero-ornament {
-    width: min(58vw, 280px);
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-52%);
-    opacity: 0.55;
+  .hero-stage {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    padding-block: 4.25rem 3.25rem;
+    gap: 1.75rem;
   }
 
   .hero-inner {
-    max-width: 100%;
-    padding: 4.5rem 0 3rem;
+    max-width: 36rem;
+    justify-self: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero h1 {
+    margin-inline: auto;
+  }
+
+  .hero-lead {
+    margin-inline: auto;
+  }
+
+  .hero-ornament {
+    width: min(70vw, 280px);
+    justify-self: center;
+    opacity: 0.5;
+    order: -1;
   }
 }
 
@@ -860,13 +899,12 @@ html[lang="en"] .lang-only-en {
 }
 
 @media (min-width: 980px) {
-  .hero-inner {
-    padding: 2.75rem 0 3.25rem;
-    max-width: min(40rem, 48%);
+  .hero-stage {
+    padding-block: 2.75rem 3.25rem;
+    gap: 3.75rem;
   }
 
   .hero-ornament {
-    width: min(42vw, 520px);
-    right: max(2rem, 5vw);
+    width: min(100%, 520px);
   }
 }
