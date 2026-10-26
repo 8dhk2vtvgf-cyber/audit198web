@@ -490,12 +490,9 @@ html[lang="en"] .lang-only-en {
   border-block: 1px solid var(--line);
 }
 
-#services,
-#experience,
-#about,
-#contact,
+/* Keep a tiny margin only for in-page service detail titles */
 .detail h2[id] {
-  scroll-margin-top: calc(var(--header-h) + 0.5rem);
+  scroll-margin-top: 0.25rem;
 }
 
 .detail {
