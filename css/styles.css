@@ -635,6 +635,8 @@ html[lang="en"] .lang-only-en {
 .contact {
   position: relative;
   overflow: hidden;
+  /* Tall enough that #contact can scroll flush under the sticky header at page end */
+  min-height: calc(100vh - var(--header-h));
   background:
     radial-gradient(700px 400px at 90% 10%, rgba(247, 151, 32, 0.18), transparent 55%),
     linear-gradient(160deg, var(--ink) 0%, var(--ink-elevated) 55%, #171433 100%);
