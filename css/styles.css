@@ -318,11 +318,11 @@ html[lang="en"] .lang-only-en {
 .hero h1 {
   margin: 0 0 1.05rem;
   font-family: var(--font-display);
-  font-size: clamp(1.65rem, 3.4vw, 2.35rem);
+  font-size: clamp(1.55rem, 3.1vw, 2.15rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.18;
-  max-width: 18ch;
+  max-width: 22ch;
   opacity: 0;
   animation: rise 1s var(--ease) 0.15s forwards;
 }
@@ -332,9 +332,14 @@ html[lang="en"] .lang-only-en {
   font-size: 1.05rem;
   line-height: 1.75;
   color: rgba(246, 244, 241, 0.88);
-  max-width: 38ch;
+  max-width: 44ch;
   opacity: 0;
   animation: rise 1s var(--ease) 0.28s forwards;
+}
+
+.hero-lead strong {
+  color: var(--white);
+  font-weight: 700;
 }
 
 .hero-actions {
@@ -426,7 +431,9 @@ html[lang="en"] .lang-only-en {
 .section-head h2,
 .detail h2,
 .about h2,
-.contact h2 {
+.contact h2,
+.process h2,
+.faq h2 {
   margin: 0 0 0.9rem;
   font-family: var(--font-display);
   font-size: clamp(1.85rem, 3.1vw, 2.55rem);
@@ -434,6 +441,19 @@ html[lang="en"] .lang-only-en {
   letter-spacing: -0.025em;
   line-height: 1.12;
   color: var(--ink);
+}
+
+.detail h3 {
+  margin: 1.75rem 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.detail h3:first-of-type {
+  margin-top: 1.35rem;
 }
 
 .section-head p,
@@ -649,6 +669,103 @@ html[lang="en"] .lang-only-en {
 
 .experience-list li + li {
   margin-top: 0.45rem;
+}
+
+/* Process */
+.process-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.process-steps > li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.15rem 1.5rem;
+  align-items: start;
+  padding: 1.65rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.process-num {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--orange-deep);
+  line-height: 1.2;
+  min-width: 2.4rem;
+}
+
+.process-steps h3 {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.process-steps p {
+  margin: 0;
+  color: var(--text-muted);
+  max-width: 44rem;
+}
+
+/* FAQ */
+.faq-list {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--line);
+  padding: 0;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.35rem 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--orange-deep);
+  line-height: 1;
+  transition: transform 0.2s var(--ease);
+}
+
+.faq-item[open] summary::after {
+  content: "–";
+}
+
+.faq-item p {
+  margin: 0 0 1.35rem;
+  max-width: 48rem;
+  color: var(--text-muted);
 }
 
 /* Contact */
