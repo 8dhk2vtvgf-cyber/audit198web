@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
@@ -32,12 +32,15 @@
         <a class="brand" href="#top" aria-label="AUDIT198">
           <img
             class="brand-logo"
-            src="assets/brand/logo-dark.svg"
-            width="220"
-            height="165"
-            alt="AUDIT198"
+            src="assets/brand/logo-header.png"
+            width="160"
+            height="137"
+            alt=""
           />
-          <span class="brand-tag">s. r. o.</span>
+          <span>
+            <span class="brand-name">AUDIT198</span>
+            <span class="brand-tag">s. r. o.</span>
+          </span>
         </a>
 
         <nav class="nav" aria-label="Primary">
@@ -81,16 +84,14 @@
       <section class="hero" id="top" aria-labelledby="hero-heading">
         <div class="hero-media" aria-hidden="true"></div>
         <div class="hero-shade" aria-hidden="true"></div>
-        <div class="hero-ornament" aria-hidden="true"></div>
+        <div class="hero-ornament" aria-hidden="true">
+          <object
+            type="image/svg+xml"
+            data="assets/brand/logo-stroke-once.svg"
+            title="AUDIT198"
+          ></object>
+        </div>
         <div class="wrap hero-inner">
-          <img
-            class="hero-brand-mark"
-            src="assets/brand/logo-hero.png"
-            width="900"
-            height="675"
-            alt="AUDIT198"
-            fetchpriority="high"
-          />
           <h1 id="hero-heading">
             <span data-lang="sk">Profesionálne audítorské a poradenské služby</span>
             <span data-lang="en">Professional audit and consulting services</span>
@@ -120,9 +121,9 @@
         </div>
       </section>
 
-      <section class="section services" id="services" aria-labelledby="services-heading">
+      <section class="section services" aria-labelledby="services-heading">
         <div class="wrap">
-          <div class="section-head">
+          <div class="section-head" id="services">
             <p class="section-kicker">
               <span data-lang="sk">Služby</span>
               <span data-lang="en">Services</span>
@@ -235,8 +236,8 @@
 
       <section class="details" aria-label="Service details">
         <div class="wrap">
-          <article class="detail" id="service-statutory">
-            <h2>
+          <article class="detail">
+            <h2 id="service-statutory">
               <span data-lang="sk">Audit účtovnej závierky</span>
               <span data-lang="en">Audit of financial statements</span>
             </h2>
@@ -275,10 +276,10 @@
                 </li>
               </ul>
             </div>
-          </article>
+          
 
-          <article class="detail" id="service-other">
-            <h2>
+          <article class="detail">
+            <h2 id="service-other">
               <span data-lang="sk">Iné audítorské služby a účtovné poradenstvo</span>
               <span data-lang="en">Other audit services and accounting advisory</span>
             </h2>
@@ -315,10 +316,10 @@
                 <li>Assessment of internal controls.</li>
               </ul>
             </div>
-          </article>
+          
 
-          <article class="detail" id="service-grants">
-            <h2>
+          <article class="detail">
+            <h2 id="service-grants">
               <span data-lang="sk">Audit grantových programov</span>
               <span data-lang="en">Audit services for grant programs — ISRS 4400 &amp; CFS</span>
             </h2>
@@ -362,10 +363,10 @@
                 <li>F-gas reporting required under EU Regulation 2024/573.</li>
               </ul>
             </div>
-          </article>
+          
 
-          <article class="detail" id="service-advisory">
-            <h2>
+          <article class="detail">
+            <h2 id="service-advisory">
               <span data-lang="sk">Poradenské služby pre príjemcov EÚ grantov</span>
               <span data-lang="en">Services for beneficiaries — preparing for CFS</span>
             </h2>
@@ -404,13 +405,13 @@
                 compliance, reducing the risk of financial losses.
               </p>
             </div>
-          </article>
+          
         </div>
       </section>
 
-      <section class="section experience" id="experience" aria-labelledby="experience-heading">
+      <section class="section experience" aria-labelledby="experience-heading">
         <div class="wrap">
-          <div class="section-head">
+          <div class="section-head" id="experience">
             <p class="section-kicker">
               <span data-lang="sk">Skúsenosti</span>
               <span data-lang="en">Expertise</span>
@@ -501,98 +502,103 @@
         </div>
       </section>
 
-      <section class="section about" id="about" aria-labelledby="about-heading">
-        <div class="wrap about-layout">
-          <figure class="about-photo">
-            <img
-              src="assets/marek.jpg"
-              alt="Marek Frecer, FCCA"
-              width="900"
-              height="1250"
-              loading="lazy"
-            />
-          </figure>
-          <div class="about-copy">
+      <section class="section about" aria-labelledby="about-heading">
+        <div class="wrap">
+          <div class="section-head" id="about">
             <p class="section-kicker">
               <span data-lang="sk">O nás</span>
               <span data-lang="en">About</span>
             </p>
             <h2 id="about-heading">Marek Frecer, FCCA</h2>
-            <ul class="creds">
-              <li>
-                <span data-lang="sk">Certifikovaný štatutárny audítor, licencia č. 1198</span>
-                <span data-lang="en">Certified statutory auditor, license no. 1198 (Slovakia)</span>
-              </li>
-              <li>
-                <span data-lang="sk">Certifikovaný audítor pre oblasť udržateľnosti, licencia č. 141</span>
-                <span data-lang="en">Certified sustainability auditor, license no. 141 (Slovakia)</span>
-              </li>
-              <li>Fellow, Association of Chartered Certified Accountants (FCCA)</li>
-            </ul>
-
-            <div data-lang="sk">
-              <ul class="experience-list">
-                <li>Audit účtovných závierok spoločností zostavených podľa slovenských postupov účtovania</li>
+          </div>
+          <div class="about-layout">
+            <div class="about-sidebar">
+              <figure class="about-photo">
+                <img
+                  src="assets/marek.jpg"
+                  alt="Marek Frecer, FCCA"
+                  width="900"
+                  height="1250"
+                  loading="lazy"
+                />
+              </figure>
+              <ul class="creds">
                 <li>
-                  Audit účtovných závierok subjektov verejného záujmu zostavených v súlade s IFRS
+                  <span data-lang="sk">Certifikovaný štatutárny audítor, licencia č. 1198</span>
+                  <span data-lang="en">Certified statutory auditor, license no. 1198 (Slovakia)</span>
                 </li>
                 <li>
-                  Poradenské projekty súvisiace s implementáciou účtovných štandardov a procesov
-                  finančného riadenia
+                  <span data-lang="sk">Certifikovaný audítor pre oblasť udržateľnosti, licencia č. 141</span>
+                  <span data-lang="en">Certified sustainability auditor, license no. 141 (Slovakia)</span>
                 </li>
-                <li>
-                  Overovanie finančných výkazov grantových programov (CFS) pre grantové agentúry
-                  Európskej komisie (CINEA, HaDEA a iné) podľa ISRS 4400
-                </li>
-                <li>Audity grantov v programe Horizon 2020 pre Európsku komisiu</li>
-                <li>Poradenstvo pri nastavení vykazovania grantových programov Európskej komisie</li>
-                <li>Tvorba rámca pre audit grantových programov medzinárodnej grantovej agentúry</li>
-                <li>
-                  Príprava správ o udržateľnosti podľa smernice CSRD a požiadaviek ESRS
-                </li>
-                <li>Dizajn a implementácia jednoduchých automatizovaných nástrojov pre vykazovanie</li>
+                <li>Fellow, Association of Chartered Certified Accountants (FCCA)</li>
               </ul>
             </div>
-            <div data-lang="en">
-              <ul class="experience-list">
-                <li>
-                  Audits of financial statements of small and medium sized entities in accordance with
-                  Slovak accounting principles
-                </li>
-                <li>
-                  Audits of financial statements of public interest entities prepared in accordance
-                  with IFRS
-                </li>
-                <li>
-                  Consulting services related to implementation of accounting standards and financial
-                  management processes
-                </li>
-                <li>
-                  Assurance on financial statements of EU grant beneficiaries (CFS) in accordance with
-                  ISRS 4400
-                </li>
-                <li>Audits of Horizon 2020 programs for the European Commission</li>
-                <li>Advising on setting up efficient reporting for EU grant programs</li>
-                <li>
-                  Assurance services in relation to F-gas reporting (EU Regulation 2024/573)
-                </li>
-                <li>
-                  Designing a framework for audits of grant programmes for an international granting
-                  authority
-                </li>
-                <li>Preparing a CSRD sustainability statement based on ESRS requirements</li>
-                <li>
-                  Design and implementation of simple automated solutions for non-financial reporting
-                  and data management
-                </li>
-              </ul>
+            <div class="about-copy">
+              <div data-lang="sk">
+                <ul class="experience-list">
+                  <li>Audit účtovných závierok spoločností zostavených podľa slovenských postupov účtovania</li>
+                  <li>
+                    Audit účtovných závierok subjektov verejného záujmu zostavených v súlade s IFRS
+                  </li>
+                  <li>
+                    Poradenské projekty súvisiace s implementáciou účtovných štandardov a procesov
+                    finančného riadenia
+                  </li>
+                  <li>
+                    Overovanie finančných výkazov grantových programov (CFS) pre grantové agentúry
+                    Európskej komisie (CINEA, HaDEA a iné) podľa ISRS 4400
+                  </li>
+                  <li>Audity grantov v programe Horizon 2020 pre Európsku komisiu</li>
+                  <li>Poradenstvo pri nastavení vykazovania grantových programov Európskej komisie</li>
+                  <li>Tvorba rámca pre audit grantových programov medzinárodnej grantovej agentúry</li>
+                  <li>
+                    Príprava správ o udržateľnosti podľa smernice CSRD a požiadaviek ESRS
+                  </li>
+                  <li>Dizajn a implementácia jednoduchých automatizovaných nástrojov pre vykazovanie</li>
+                </ul>
+              </div>
+              <div data-lang="en">
+                <ul class="experience-list">
+                  <li>
+                    Audits of financial statements of small and medium sized entities in accordance with
+                    Slovak accounting principles
+                  </li>
+                  <li>
+                    Audits of financial statements of public interest entities prepared in accordance
+                    with IFRS
+                  </li>
+                  <li>
+                    Consulting services related to implementation of accounting standards and financial
+                    management processes
+                  </li>
+                  <li>
+                    Assurance on financial statements of EU grant beneficiaries (CFS) in accordance with
+                    ISRS 4400
+                  </li>
+                  <li>Audits of Horizon 2020 programs for the European Commission</li>
+                  <li>Advising on setting up efficient reporting for EU grant programs</li>
+                  <li>
+                    Assurance services in relation to F-gas reporting (EU Regulation 2024/573)
+                  </li>
+                  <li>
+                    Designing a framework for audits of grant programmes for an international granting
+                    authority
+                  </li>
+                  <li>Preparing a CSRD sustainability statement based on ESRS requirements</li>
+                  <li>
+                    Design and implementation of simple automated solutions for non-financial reporting
+                    and data management
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section contact" id="contact" aria-labelledby="contact-heading">
-        <div class="wrap contact-grid">
+      <section class="section contact" aria-labelledby="contact-heading">
+        <div class="wrap contact-grid" id="contact">
           <div>
             <p class="section-kicker">
               <span data-lang="sk">Kontakt</span>
@@ -660,9 +666,6 @@
           <img src="assets/brand/logo-light.svg" width="140" height="105" alt="" />
           <p>© <span id="year"></span> AUDIT198 s. r. o.</p>
         </div>
-        <p>
-          <a href="mailto:office@audit198.com">office@audit198.com</a>
-        </p>
       </div>
     </footer>
 
