@@ -8,12 +8,12 @@
       name="description"
       content="Statutory audit, audit and advisory services, EU grant audits. AUDIT198 s. r. o., Bratislava."
     />
-    <meta name="theme-color" content="#0b1520" />
-    <link rel="icon" href="assets/logo-2025.png" type="image/png" />
+    <meta name="theme-color" content="#04031c" />
+    <link rel="icon" href="assets/brand/favicon.png" type="image/png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Sora:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
@@ -30,11 +30,14 @@
     <header class="site-header">
       <div class="wrap header-inner">
         <a class="brand" href="#top" aria-label="AUDIT198">
-          <img src="assets/logo-2025.png" width="748" height="486" alt="" />
-          <span>
-            <span class="brand-name">AUDIT198</span>
-            <span class="brand-tag">s. r. o.</span>
-          </span>
+          <img
+            class="brand-logo"
+            src="assets/brand/logo-dark.svg"
+            width="220"
+            height="165"
+            alt="AUDIT198"
+          />
+          <span class="brand-tag">s. r. o.</span>
         </a>
 
         <nav class="nav" aria-label="Primary">
@@ -76,18 +79,18 @@
 
     <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-heading">
-        <div class="hero-media" aria-hidden="true">
+        <div class="hero-media" aria-hidden="true"></div>
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-ornament" aria-hidden="true"></div>
+        <div class="wrap hero-inner">
           <img
-            src="assets/hero.jpg"
-            alt=""
-            width="1600"
-            height="1200"
+            class="hero-brand-mark"
+            src="assets/brand/logo-hero.png"
+            width="900"
+            height="675"
+            alt="AUDIT198"
             fetchpriority="high"
           />
-        </div>
-        <div class="hero-shade" aria-hidden="true"></div>
-        <div class="wrap hero-inner">
-          <p class="hero-brand">AUDIT198</p>
           <h1 id="hero-heading">
             <span data-lang="sk">Profesionálne audítorské a poradenské služby</span>
             <span data-lang="en">Professional audit and consulting services</span>
@@ -653,7 +656,10 @@
 
     <footer class="site-footer">
       <div class="wrap footer-inner">
-        <p>© <span id="year"></span> AUDIT198 s. r. o.</p>
+        <div class="footer-brand">
+          <img src="assets/brand/logo-light.svg" width="140" height="105" alt="" />
+          <p>© <span id="year"></span> AUDIT198 s. r. o.</p>
+        </div>
         <p>
           <a href="mailto:office@audit198.com">office@audit198.com</a>
         </p>
