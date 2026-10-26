@@ -66,16 +66,16 @@
     document.documentElement.setAttribute("data-lang", lang);
 
     var titles = {
-      sk: "Audítorské a poradenské služby | AUDIT198 s. r. o.",
-      en: "Audit and advisory services | AUDIT198 s. r. o.",
+      sk: "Audit grantových programov a CFS | AUDIT198 s.r.o.",
+      en: "Grant Programme Audits and CFS | AUDIT198 s.r.o.",
     };
     if (titles[lang]) document.title = titles[lang];
 
     var descriptions = {
       sk:
-        "Štatutárny audit, audítorské a poradenské služby, audit EÚ grantov. AUDIT198 s. r. o., Bratislava.",
+        "Audit grantových programov a Certificate on Financial Statements (CFS) podľa ISRS 4400. Skúsenosti s Horizon Europe, H2020 a ďalšími EÚ grantmi. Bezplatná konzultácia.",
       en:
-        "Statutory audit, audit and advisory services, EU grant audits. AUDIT198 s. r. o., Bratislava.",
+        "Grant programme audits and Certificate on Financial Statements (CFS) under ISRS 4400. Experience with Horizon Europe, H2020 and other EU grants. Free consultation.",
     };
     var meta = document.querySelector('meta[name="description"]');
     if (meta && descriptions[lang]) meta.setAttribute("content", descriptions[lang]);
