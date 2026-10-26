@@ -385,7 +385,8 @@ html[lang="en"] .lang-only-en {
 
 /* Sections */
 .section {
-  padding: 5.25rem 0;
+  /* Tighter top padding so section titles sit near the viewport top on anchor jump */
+  padding: 2.75rem 0 5.25rem;
 }
 
 .section-head {
@@ -489,13 +490,12 @@ html[lang="en"] .lang-only-en {
   border-block: 1px solid var(--line);
 }
 
-.section-head,
 #services,
 #experience,
 #about,
 #contact,
 .detail h2[id] {
-  scroll-margin-top: calc(var(--header-h) + 0.85rem);
+  scroll-margin-top: calc(var(--header-h) + 0.5rem);
 }
 
 .detail {
