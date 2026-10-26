@@ -131,16 +131,28 @@ html[lang="en"] .lang-only-en {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.65rem;
   color: inherit;
   text-decoration: none;
+  line-height: 1;
 }
 
 .brand-logo {
-  height: 3.05rem;
+  display: block;
+  height: 2.55rem;
   width: auto;
   flex-shrink: 0;
-  border-radius: 0.15rem;
+  object-fit: contain;
+  object-position: center;
+  /* Optical nudge: triangle reads slightly high next to the two-line wordmark */
+  transform: translateY(0.06rem);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.22rem;
 }
 
 .brand-name {
@@ -155,7 +167,6 @@ html[lang="en"] .lang-only-en {
 
 .brand-tag {
   display: block;
-  margin-top: 0.22rem;
   font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -230,7 +241,7 @@ html[lang="en"] .lang-only-en {
   isolation: isolate;
   min-height: min(94vh, 820px);
   display: grid;
-  align-items: end;
+  align-items: center;
   color: var(--white);
   overflow: hidden;
   background: var(--ink);
@@ -291,7 +302,7 @@ html[lang="en"] .lang-only-en {
 .hero-inner {
   position: relative;
   z-index: 1;
-  padding: 7.5rem 0 4.75rem;
+  padding: 3.25rem 0 3.5rem;
   max-width: min(42rem, 52%);
 }
 
@@ -804,20 +815,20 @@ html[lang="en"] .lang-only-en {
   }
 
   .brand-logo {
-    height: 2.55rem;
+    height: 2.15rem;
   }
 
   .hero-ornament {
     width: min(58vw, 280px);
     right: 0.5rem;
-    top: 18%;
-    transform: none;
+    top: 50%;
+    transform: translateY(-52%);
     opacity: 0.55;
   }
 
   .hero-inner {
     max-width: 100%;
-    padding-top: 6.5rem;
+    padding: 4.5rem 0 3rem;
   }
 }
 
@@ -850,7 +861,7 @@ html[lang="en"] .lang-only-en {
 
 @media (min-width: 980px) {
   .hero-inner {
-    padding: 9rem 0 5.75rem;
+    padding: 2.75rem 0 3.25rem;
     max-width: min(40rem, 48%);
   }
 
