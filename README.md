@@ -40,19 +40,18 @@ Repo Settings → Pages:
 
 No build step. After merge to `main`, the site is served from the repository root.
 
-## Custom domain (later — do not change DNS until ready)
+## Custom domain
 
-When the Pages deploy looks correct:
+Primary host: **`www.audit198.com`** (Slovak by default; SK|EN switcher). Apex `audit198.com` should redirect via GitHub Pages once DNS is set.
 
-1. In the repo Pages settings, set custom domain e.g. `www.audit198.com`.
-2. At the DNS provider (Websupport), point **`audit198.com`** at GitHub Pages, for example:
-   - **A** records for apex `@` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - **CNAME** for `www` → `8dhk2vtvgf-cyber.github.io`
-3. Wait for DNS + GitHub HTTPS certificate.
-4. Only then cancel Websupport Website Builder (next billed period cited around late December 2026).
-5. Let the `audit198.sk` registration lapse (or cancel renewal) once you no longer need it — no site dependency remains.
+DNS at Websupport (do **not** change MX / Proton mail records):
 
-Keep domain registration at Websupport (or elsewhere); Pages only replaces the website hosting.
+- **A** for `@` (apex) → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+- **CNAME** for `www` → `8dhk2vtvgf-cyber.github.io`
+
+Repo root `CNAME` file pins the Pages custom domain to `www.audit198.com`. After DNS propagates, enable **Enforce HTTPS** in Pages settings if not already on.
+
+`audit198.sk` is being dropped (no renewal). Website Builder should be cancelled only after `www.audit198.com` serves this site over HTTPS.
 
 ## Structure
 
