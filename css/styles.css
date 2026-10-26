@@ -656,6 +656,10 @@ html[lang="en"] .lang-only-en {
   pointer-events: none;
 }
 
+.contact .section-head {
+  margin-bottom: 2rem;
+}
+
 .contact h2,
 .contact .section-kicker {
   color: var(--paper);
