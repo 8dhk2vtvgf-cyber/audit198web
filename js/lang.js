@@ -1,14 +1,15 @@
 /**
- * AUDIT198 language / domain behaviour
- * - audit198.sk → Slovak
- * - audit198.com / www → English
- * - GitHub Pages (and other hosts) → English by default
- * Overrides: ?lang=sk|en, path /sk or /en, localStorage audit198-lang
+ * AUDIT198 language behaviour
+ * - audit198.com / www → Slovak by default
+ * - GitHub Pages / localhost → Slovak by default
+ * - Top switcher toggles SK | EN on the same host (?lang=)
+ * - Overrides: ?lang=sk|en, path /sk or /en, localStorage (only when host has no preference)
+ *
+ * Note: audit198.sk is being dropped; no cross-domain language switching.
  */
 (function () {
   var STORAGE_KEY = "audit198-lang";
-  var SK_HOSTS = ["audit198.sk", "www.audit198.sk"];
-  var EN_HOSTS = ["audit198.com", "www.audit198.com"];
+  var PRIMARY_HOSTS = ["audit198.com", "www.audit198.com"];
 
   function normalizeLang(value) {
     if (!value) return null;
@@ -36,8 +37,8 @@
 
   function langFromHost() {
     var host = (window.location.hostname || "").toLowerCase();
-    if (SK_HOSTS.indexOf(host) !== -1) return "sk";
-    if (EN_HOSTS.indexOf(host) !== -1) return "en";
+    // Production .com (and www) always prefer Slovak as the primary language.
+    if (PRIMARY_HOSTS.indexOf(host) !== -1) return "sk";
     return null;
   }
 
@@ -50,13 +51,13 @@
   }
 
   function resolveLang() {
-    // Explicit URL overrides always win (useful on GitHub Pages preview).
+    // Explicit URL overrides win (switcher + testing on GitHub Pages).
     return (
       langFromQuery() ||
       langFromPath() ||
       langFromHost() ||
       langFromStorage() ||
-      "en"
+      "sk"
     );
   }
 
@@ -98,20 +99,6 @@
   }
 
   function switchHref(targetLang) {
-    var host = (window.location.hostname || "").toLowerCase();
-    var onCustom =
-      SK_HOSTS.indexOf(host) !== -1 || EN_HOSTS.indexOf(host) !== -1;
-
-    // On production domains, prefer the matching hostname when available.
-    if (onCustom) {
-      if (targetLang === "sk" && EN_HOSTS.indexOf(host) !== -1) {
-        return "https://www.audit198.sk/";
-      }
-      if (targetLang === "en" && SK_HOSTS.indexOf(host) !== -1) {
-        return "https://www.audit198.com/";
-      }
-    }
-
     var url = new URL(window.location.href);
     url.searchParams.set("lang", targetLang);
     return url.pathname + url.search + url.hash;
@@ -122,29 +109,19 @@
       var targetLang = link.getAttribute("data-set-lang");
       link.setAttribute("href", switchHref(targetLang));
       link.addEventListener("click", function (event) {
-        var host = (window.location.hostname || "").toLowerCase();
-        var crossing =
-          (targetLang === "sk" && EN_HOSTS.indexOf(host) !== -1) ||
-          (targetLang === "en" && SK_HOSTS.indexOf(host) !== -1);
-
+        event.preventDefault();
         persistLang(targetLang);
-
-        // Same-host preview: apply without full navigation reload if possible.
-        if (!crossing) {
-          event.preventDefault();
-          applyLang(targetLang);
-          var url = new URL(window.location.href);
-          url.searchParams.set("lang", targetLang);
-          window.history.replaceState({}, "", url.pathname + url.search + url.hash);
-          link.blur();
-        }
+        applyLang(targetLang);
+        var url = new URL(window.location.href);
+        url.searchParams.set("lang", targetLang);
+        window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+        link.blur();
       });
     });
   }
 
   var lang = resolveLang();
   applyLang(lang);
-  // Persist host-derived language so switcher stays consistent on github.io.
-  if (langFromHost()) persistLang(lang);
+  if (langFromHost() && !langFromQuery() && !langFromPath()) persistLang(lang);
   wireSwitcher();
 })();
