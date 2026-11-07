@@ -5,7 +5,7 @@ Clean static site for **AUDIT198 s. r. o.** (audit and advisory), hosted on **Gi
 Live preview (after Pages builds from `main`):  
 https://8dhk2vtvgf-cyber.github.io/audit198web/
 
-Production domain (planned): **`audit198.com`** only. The `audit198.sk` domain is being dropped to save cost.
+Production: **https://www.audit198.com** (`audit198.com` only; `audit198.sk` is being dropped).
 
 ## Local preview
 
@@ -15,19 +15,19 @@ Open `index.html` in a browser, or from this folder:
 python3 -m http.server 8080
 ```
 
-Then visit http://localhost:8080/ (Slovak by default) or `?lang=en`.
+Then visit http://localhost:8080/ (Slovak) or http://localhost:8080/en/ (English).
 
 ## Languages
 
-Primary language is **Slovak**. English is available via the top **SK | EN** switcher (`?lang=en`).
+Primary language is **Slovak** at `/`. English is a real path at **`/en/`** (and `/en`). `/sk/` is also available and canonicalises to `/`.
 
-| Host | Default language |
-|------|------------------|
-| `audit198.com` / `www.audit198.com` | Slovak |
-| GitHub Pages / localhost | Slovak |
+| URL | Language |
+|------|----------|
+| `/` | Slovak (default) |
+| `/sk/` | Slovak |
+| `/en/` | English |
 
-Overrides: `?lang=sk` / `?lang=en`, or path segments `/sk` / `/en`.  
-Language switching stays on the same host (no `.sk` domain redirect).
+The top **SK \| EN** switcher navigates between `/` and `/en/`. Legacy `?lang=en` / `?lang=sk` redirects to those paths.
 
 Email `office@audit198.com` is on **Proton Mail** (independent of Websupport hosting).
 
@@ -56,8 +56,10 @@ Repo root `CNAME` file pins the Pages custom domain to `www.audit198.com`. After
 ## Structure
 
 ```
-index.html      # single-page bilingual site
+index.html      # Slovak home (`/`)
+en/index.html   # English (`/en/`)
+sk/index.html   # Slovak alternate (`/sk/`, canonical → `/`)
 css/styles.css  # shared styles
-js/lang.js      # language / query behaviour
+js/lang.js      # path-based language switching
 assets/         # logo, hero, portrait
 ```

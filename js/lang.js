@@ -1,9 +1,10 @@
 /**
  * AUDIT198 language behaviour
- * - audit198.com / www → Slovak by default
- * - GitHub Pages / localhost → Slovak by default
- * - Top switcher toggles SK | EN on the same host (?lang=)
- * - Overrides: ?lang=sk|en, path /sk or /en, localStorage (only when host has no preference)
+ * - `/` and `/sk/` → Slovak (canonical SK URL is `/`)
+ * - `/en/` → English
+ * - Top switcher navigates to real paths (`/` vs `/en/`)
+ * - Legacy `?lang=sk|en` redirects to those paths
+ * - localStorage remembers last choice only when no path/host preference applies
  *
  * Note: audit198.sk is being dropped; no cross-domain language switching.
  */
@@ -19,10 +20,18 @@
     return null;
   }
 
+  function siteBase() {
+    var path = window.location.pathname || "/";
+    var match = path.match(/^(.*?\/audit198web)(?:\/|$)/i);
+    return match ? match[1] : "";
+  }
+
   function langFromPath() {
     var path = window.location.pathname || "";
-    if (/\/sk(?:\/|$)/i.test(path)) return "sk";
-    if (/\/en(?:\/|$)/i.test(path)) return "en";
+    var base = siteBase();
+    var rest = path.slice(base.length) || "/";
+    if (/^\/en(?:\/|$)/i.test(rest)) return "en";
+    if (/^\/sk(?:\/|$)/i.test(rest)) return "sk";
     return null;
   }
 
@@ -37,7 +46,6 @@
 
   function langFromHost() {
     var host = (window.location.hostname || "").toLowerCase();
-    // Production .com (and www) always prefer Slovak as the primary language.
     if (PRIMARY_HOSTS.indexOf(host) !== -1) return "sk";
     return null;
   }
@@ -50,11 +58,17 @@
     }
   }
 
+  function langPath(lang) {
+    var base = siteBase();
+    if (lang === "en") return base + "/en/";
+    // Canonical Slovak URL is `/` ( `/sk/` also works and shares the same content).
+    return base + "/";
+  }
+
   function resolveLang() {
-    // Explicit URL overrides win (switcher + testing on GitHub Pages).
     return (
-      langFromQuery() ||
       langFromPath() ||
+      langFromQuery() ||
       langFromHost() ||
       langFromStorage() ||
       "sk"
@@ -99,29 +113,37 @@
   }
 
   function switchHref(targetLang) {
-    var url = new URL(window.location.href);
-    url.searchParams.set("lang", targetLang);
-    return url.pathname + url.search + url.hash;
+    return langPath(targetLang) + (window.location.hash || "");
   }
 
   function wireSwitcher() {
     document.querySelectorAll(".lang-switch a[data-set-lang]").forEach(function (link) {
       var targetLang = link.getAttribute("data-set-lang");
       link.setAttribute("href", switchHref(targetLang));
-      link.addEventListener("click", function (event) {
-        event.preventDefault();
+      link.addEventListener("click", function () {
         persistLang(targetLang);
-        applyLang(targetLang);
-        var url = new URL(window.location.href);
-        url.searchParams.set("lang", targetLang);
-        window.history.replaceState({}, "", url.pathname + url.search + url.hash);
-        link.blur();
+        // Allow full navigation to `/` or `/en/` so crawlers and users share stable URLs.
       });
     });
   }
 
+  // Migrate legacy `?lang=` to path URLs (keep hash).
+  var queryLang = langFromQuery();
+  if (queryLang && !langFromPath()) {
+    try {
+      var dest = langPath(queryLang) + (window.location.hash || "");
+      var here = window.location.pathname + (window.location.hash || "");
+      if (dest !== here && dest !== window.location.pathname + "/" + (window.location.hash || "")) {
+        window.location.replace(dest);
+        return;
+      }
+    } catch (e) {
+      /* fall through */
+    }
+  }
+
   var lang = resolveLang();
   applyLang(lang);
-  if (langFromHost() && !langFromQuery() && !langFromPath()) persistLang(lang);
+  if (langFromPath() || (langFromHost() && !langFromQuery())) persistLang(lang);
   wireSwitcher();
 })();
