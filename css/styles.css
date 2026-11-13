@@ -85,25 +85,6 @@ a:hover {
   top: 1rem;
 }
 
-/* Language visibility */
-body [data-lang] {
-  display: none !important;
-}
-
-html[lang="sk"] body [data-lang="sk"],
-html[lang="en"] body [data-lang="en"] {
-  display: contents !important;
-}
-
-html[lang="sk"] .lang-only-sk,
-html[lang="en"] .lang-only-en {
-  display: inline;
-}
-
-.lang-only-sk,
-.lang-only-en {
-  display: none;
-}
 
 .wrap {
   width: min(100% - 2.5rem, var(--max));
