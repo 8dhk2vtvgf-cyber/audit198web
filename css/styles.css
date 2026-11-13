@@ -1070,6 +1070,192 @@ a:hover {
   }
 }
 
+
+/* Task 4 section layouts */
+.fact-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+  counter-reset: fact;
+}
+
+.fact-list li {
+  position: relative;
+  padding: 1.1rem 1.15rem 1.1rem 3.4rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  counter-increment: fact;
+}
+
+.fact-list li::before {
+  content: counter(fact);
+  position: absolute;
+  left: 1rem;
+  top: 1.05rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.tile-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .tile-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.tile {
+  padding: 1.35rem 1.25rem;
+  background: var(--white);
+  border-top: 2px solid var(--orange);
+}
+
+.tile p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.stat-grid {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 720px) {
+  .stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.stat {
+  margin: 0;
+  padding: 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.stat strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1;
+  margin-bottom: 0.55rem;
+  color: var(--ink);
+}
+
+.methods {
+  color: var(--text-muted);
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 1.25rem 0;
+  padding: 0;
+}
+
+.chip-list li {
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--line-strong);
+  background: var(--white);
+  color: var(--ink);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.send-box {
+  margin-top: 2rem;
+  padding: 1.35rem 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+
+.send-box h3 {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+
+.send-box p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.section-cta-text {
+  margin: 1.5rem 0 0.75rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.about-bullets {
+  margin: 0 0 1.25rem;
+  padding-left: 1.15rem;
+  color: var(--ink);
+}
+
+.about-bullets li {
+  margin-bottom: 0.65rem;
+}
+
+.creds-line {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.notes-reviewed {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.contact-phone {
+  margin: 0 0 0.75rem;
+}
+
+.contact-phone a {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.contact-phone a:hover {
+  color: var(--orange);
+}
+
+.contact-logo-wrap {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.contact .contact-grid a {
+  color: var(--white);
+  text-decoration-color: #f79720;
+}
+
+.need-cfs .section-head h2,
+.why .section-head h2,
+.other-services .section-head h2,
+.statutory .section-head h2,
+.notes .section-head h2 {
+  color: var(--ink);
+}
+
 /* Breakpoints */
 @media (max-width: 719px) {
   :root {
