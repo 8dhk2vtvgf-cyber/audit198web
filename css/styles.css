@@ -7,11 +7,10 @@
   --ink-elevated: #0c0b28;
   --ink-soft: #16142f;
   --orange: #f79720;
-  --orange-deep: #e07e0a;
   --orange-soft: rgba(247, 151, 32, 0.14);
   --paper: #f6f4f1;
   --paper-pure: #ffffff;
-  --text: #12111f;
+  --text: var(--ink);
   --text-muted: #5c5a6e;
   --line: rgba(4, 3, 28, 0.1);
   --line-strong: rgba(4, 3, 28, 0.18);
@@ -56,13 +55,15 @@ img {
 }
 
 a {
-  color: var(--orange-deep);
-  text-decoration-thickness: 1px;
+  color: var(--ink);
+  text-decoration-color: #f79720;
+  text-decoration-thickness: 2px;
   text-underline-offset: 0.18em;
 }
 
 a:hover {
   color: var(--ink);
+  text-decoration-color: var(--ink);
 }
 
 :focus-visible {
@@ -102,6 +103,15 @@ a:hover {
   overflow: visible;
 }
 
+.site-header::after {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin: 0 auto;
+  background: var(--orange);
+}
+
 .header-inner {
   display: flex;
   align-items: center;
@@ -122,40 +132,11 @@ a:hover {
 
 .brand-logo {
   display: block;
-  height: 2.55rem;
+  height: 1.9rem; /* ~30px */
   width: auto;
   flex-shrink: 0;
   object-fit: contain;
-  object-position: center;
-  /* Optical nudge: triangle reads slightly high next to the two-line wordmark */
-  transform: translateY(0.06rem);
-}
-
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 0.22rem;
-}
-
-.brand-name {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.35rem;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  line-height: 1;
-}
-
-.brand-tag {
-  display: block;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  line-height: 1;
+  object-position: left center;
 }
 
 .nav {
@@ -192,7 +173,7 @@ a:hover {
 
 .nav-links a:hover {
   opacity: 1;
-  color: var(--orange-deep);
+  color: var(--ink);
 }
 
 .lang-switch {
@@ -238,40 +219,21 @@ a:hover {
   position: absolute;
   inset: 0;
   z-index: -2;
-  background:
-    radial-gradient(ellipse 75% 55% at 50% 20%, rgba(247, 151, 32, 0.26), transparent 58%),
-    radial-gradient(ellipse 45% 40% at 20% 85%, rgba(247, 151, 32, 0.12), transparent 50%),
-    linear-gradient(155deg, #2b2940 0%, #35324d 42%, #45415f 100%);
-}
-
-.hero-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.22;
-  background-image: url("../assets/brand/atmosphere.png");
-  background-size: cover;
-  background-position: center;
-  mix-blend-mode: soft-light;
-  filter: contrast(1.05) saturate(0.75);
-  transform: scale(1.08);
-  animation: hero-drift 22s var(--ease) infinite alternate;
+  background: var(--ink);
 }
 
 .hero-shade {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    linear-gradient(105deg, rgba(43, 41, 64, 0.55) 8%, rgba(43, 41, 64, 0.28) 55%, rgba(43, 41, 64, 0.4) 100%),
-    linear-gradient(180deg, rgba(43, 41, 64, 0.15) 0%, rgba(43, 41, 64, 0.55) 100%);
+  background: transparent;
 }
 
 .hero-stage {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: clamp(1.5rem, 4vw, 3.5rem);
   padding-block: 3.25rem;
@@ -286,12 +248,11 @@ a:hover {
   opacity: 0.92;
 }
 
-.hero-ornament object {
+.hero-ornament object,
+.hero-ornament img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 530 / 295;
-  filter: drop-shadow(0 18px 40px rgba(4, 3, 28, 0.28));
 }
 
 .hero-inner {
@@ -411,7 +372,16 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--orange-deep);
+  color: var(--text-muted);
+}
+
+.section-kicker::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin: 0 0 0.7rem;
+  background: var(--orange);
 }
 
 .section-head h2,
@@ -506,7 +476,7 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--orange-deep);
+  color: var(--ink);
 }
 
 /* Detail blocks */
@@ -684,7 +654,7 @@ a:hover {
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--orange-deep);
+  color: var(--ink);
   line-height: 1.2;
   min-width: 2.4rem;
 }
@@ -742,7 +712,7 @@ a:hover {
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1.25rem;
-  color: var(--orange-deep);
+  color: var(--ink);
   line-height: 1;
   transition: transform 0.2s var(--ease);
 }
@@ -780,7 +750,7 @@ a:hover {
   width: min(52vw, 380px);
   aspect-ratio: 200 / 160;
   opacity: 0.08;
-  background: url("../assets/brand/logo-mark-light.svg") center / contain no-repeat;
+  background: url("../assets/brand/audit198-logo-horizontal-white.svg") center / contain no-repeat;
   pointer-events: none;
 }
 
@@ -880,9 +850,10 @@ a:hover {
 }
 
 .footer-brand img {
-  height: 1.65rem;
+  height: 1.75rem; /* ~28px */
   width: auto;
-  opacity: 0.85;
+  opacity: 1;
+  margin-block: 0.35rem; /* clear space ~ mark height */
 }
 
 .site-footer a {
@@ -947,18 +918,12 @@ a:hover {
     padding-block: 0.45rem;
   }
 
-  /* Mobile: mark only — free width for a single nav row */
-  .brand-text {
-    display: none;
-  }
-
   .brand {
     gap: 0;
   }
 
   .brand-logo {
-    height: 1.85rem;
-    transform: none;
+    height: 1.65rem;
   }
 
   .nav {
