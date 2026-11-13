@@ -202,6 +202,26 @@ a:hover {
   user-select: none;
 }
 
+.header-phone {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  text-decoration-color: #f79720;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+}
+
+.header-phone:hover {
+  text-decoration: underline;
+  text-decoration-color: #f79720;
+  text-decoration-thickness: 2px;
+}
+
 /* Hero — brand-first atmospheric plane */
 .hero {
   position: relative;
@@ -233,68 +253,111 @@ a:hover {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   align-items: center;
   gap: clamp(1.5rem, 4vw, 3.5rem);
   padding-block: 3.25rem;
   width: min(100% - 2.5rem, var(--max));
 }
 
-.hero-ornament {
+.hero-ornament,
+.cert-card {
   position: relative;
-  width: min(100%, 480px);
+  width: min(100%, 360px);
   justify-self: end;
   pointer-events: none;
-  opacity: 0.92;
 }
 
-.hero-ornament object,
-.hero-ornament img {
+.cert-svg {
   display: block;
   width: 100%;
   height: auto;
+  filter: none;
 }
 
 .hero-inner {
   position: relative;
   z-index: 1;
-  max-width: 36rem;
+  max-width: 38rem;
   justify-self: start;
+  text-align: left;
+}
+
+.hero-kicker {
+  margin: 0 0 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(246, 244, 241, 0.72);
+}
+
+.hero-kicker::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin: 0 0 0.75rem;
+  background: var(--orange);
 }
 
 .hero h1 {
   margin: 0 0 1.05rem;
   font-family: var(--font-display);
-  font-size: clamp(1.55rem, 3.1vw, 2.15rem);
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
   font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.18;
-  max-width: 22ch;
-  opacity: 0;
-  animation: rise 1s var(--ease) 0.15s forwards;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  max-width: 14ch;
+  color: var(--white);
+  opacity: 1;
+  animation: none;
 }
 
 .hero-lead {
-  margin: 0 0 2.1rem;
+  margin: 0 0 1.6rem;
   font-size: 1.05rem;
-  line-height: 1.75;
+  line-height: 1.55;
   color: rgba(246, 244, 241, 0.88);
-  max-width: 44ch;
-  opacity: 0;
-  animation: rise 1s var(--ease) 0.28s forwards;
+  max-width: 42ch;
+  opacity: 1;
+  animation: none;
 }
 
-.hero-lead strong {
-  color: var(--white);
-  font-weight: 700;
+@media (min-width: 760px) {
+  .hero-lead {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
-  opacity: 0;
-  animation: rise 1s var(--ease) 0.4s forwards;
+  opacity: 1;
+  animation: none;
+}
+
+.hero-micro,
+.hero-trust {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: rgba(246, 244, 241, 0.7);
+  max-width: 42ch;
+}
+
+.hero-trust {
+  margin-top: 0.55rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+}
+
+.btn-icon {
+  flex-shrink: 0;
 }
 
 .btn {
@@ -309,6 +372,7 @@ a:hover {
   font-weight: 700;
   letter-spacing: 0.01em;
   text-decoration: none;
+  text-decoration-thickness: 0;
   border: 1px solid transparent;
   transition:
     background 0.2s var(--ease),
@@ -900,6 +964,112 @@ a:hover {
   }
 }
 
+
+.section-cta {
+  margin: 2rem 0 0;
+}
+
+.section-cta .btn {
+  text-decoration: none;
+}
+
+/* Mobile call bar */
+.mobile-call-bar {
+  display: none;
+}
+
+@media (max-width: 759px) {
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  .header-phone {
+    display: none;
+  }
+
+  .mobile-call-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+    padding: 0.65rem 0.85rem calc(0.65rem + env(safe-area-inset-bottom, 0px));
+    background: rgba(246, 244, 241, 0.96);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 28px rgba(4, 3, 28, 0.12);
+  }
+
+  .mobile-call-bar[hidden] {
+    display: none !important;
+  }
+
+  .mobile-call-bar__btn {
+    min-height: 48px;
+    padding: 0.7rem 0.85rem;
+    text-decoration: none;
+  }
+
+  .mobile-call-bar .btn-ghost {
+    color: var(--ink);
+    border-color: var(--ink);
+    background: var(--white);
+  }
+
+  body.has-mobile-call-bar {
+    padding-bottom: calc(4.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  body.has-mobile-call-bar .site-footer {
+    padding-bottom: 1.25rem;
+  }
+
+  .hero-stage {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+    text-align: left;
+    padding-block: 3.5rem 2.75rem;
+    gap: 1.75rem;
+  }
+
+  .hero-inner {
+    justify-self: start;
+    max-width: none;
+  }
+
+  .hero-actions {
+    justify-content: flex-start;
+  }
+
+  .hero h1 {
+    margin-inline: 0;
+    max-width: 12ch;
+  }
+
+  .hero-lead {
+    margin-inline: 0;
+  }
+
+  .cert-card {
+    width: min(78vw, 280px);
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cert-svg,
+  .hero h1,
+  .hero-lead,
+  .hero-actions {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 /* Breakpoints */
 @media (max-width: 719px) {
   :root {
@@ -973,34 +1143,27 @@ a:hover {
 
   .hero-stage {
     grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-    padding-block: 4.25rem 3.25rem;
+    justify-items: stretch;
+    text-align: left;
+    padding-block: 3.5rem 2.75rem;
     gap: 1.75rem;
   }
 
   .hero-inner {
-    max-width: 36rem;
-    justify-self: center;
+    max-width: none;
+    justify-self: start;
   }
 
   .hero-actions {
-    justify-content: center;
+    justify-content: flex-start;
   }
 
-  .hero h1 {
-    margin-inline: auto;
-  }
-
-  .hero-lead {
-    margin-inline: auto;
-  }
-
-  .hero-ornament {
-    width: min(70vw, 280px);
-    justify-self: center;
-    opacity: 0.5;
-    order: -1;
+  .hero-ornament,
+  .cert-card {
+    width: min(78vw, 280px);
+    justify-self: start;
+    opacity: 1;
+    order: 0;
   }
 }
 
