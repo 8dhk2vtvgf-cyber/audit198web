@@ -1,0 +1,39 @@
+name: Deploy preview
+on:
+  push:
+    branches: [redesign]
+  workflow_dispatch:
+concurrency:
+  group: preview
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build preview copy
+        run: |
+          set -euo pipefail
+          PREVIEW_URL="https://8dhk2vtvgf-cyber.github.io/audit198web-preview"
+          mkdir -p /tmp/preview
+          rsync -a --delete --exclude .git --exclude .github ./ /tmp/preview/
+          rm -f /tmp/preview/CNAME /tmp/preview/sitemap.xml
+          touch /tmp/preview/.nojekyll
+          echo "User-agent: *" > /tmp/preview/robots.txt
+          echo "Disallow: /" >> /tmp/preview/robots.txt
+          find /tmp/preview -name "*.html" -exec sed -i -e 's#<head>#&<meta name="robots" content="noindex,nofollow">#' -e "s#https://www.audit198.com#$PREVIEW_URL#g" {} +
+          test ! -e /tmp/preview/CNAME
+          if grep -rl "https://www.audit198.com" /tmp/preview --include="*.html"; then echo "Live URL left in preview"; exit 1; fi
+          for f in $(find /tmp/preview -name "*.html"); do grep -q 'name="robots" content="noindex' "$f" || { echo "noindex missing in $f"; exit 1; }; done
+      - name: Push to preview repo
+        env:
+          PREVIEW_TOKEN: ${{ secrets.PREVIEW_TOKEN }}
+        run: |
+          set -euo pipefail
+          cd /tmp/preview
+          git init -q -b main
+          git config user.name "audit198-preview"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Preview of $GITHUB_SHA"
+          git push -f "https://x-access-token:$PREVIEW_TOKEN@github.com/8dhk2vtvgf-cyber/audit198web-preview.git" main
